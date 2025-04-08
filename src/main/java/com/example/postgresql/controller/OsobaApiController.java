@@ -24,4 +24,22 @@ public class OsobaApiController {
     public List<Osoba> sveOsobe() {
         return osobaRepository.findAll();
     }
+
+    @PutMapping("/{id}")
+    public Osoba izmeniOsobu(@PathVariable Long id, @RequestBody Osoba novaOsoba) {
+        return osobaRepository.findById(id).map(osoba -> {
+            osoba.setIme(novaOsoba.getIme());
+            osoba.setPrezime(novaOsoba.getPrezime());
+            osoba.setDatumRodjenja(novaOsoba.getDatumRodjenja());
+            osoba.setEmail(novaOsoba.getEmail());
+            return osobaRepository.save(osoba);
+        }).orElseThrow(() -> new RuntimeException("Osoba nije pronađena"));
+    }
+
+    @DeleteMapping("/{id}")
+    public void obrisiOsobu(@PathVariable Long id) {
+        osobaRepository.deleteById(id);
+    }
+
+
 }
