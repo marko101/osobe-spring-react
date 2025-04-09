@@ -12,13 +12,13 @@ function Lista() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/osobe").then((res) => {
+    axios.get("http://localhost:8081/api/osobe").then((res) => {
       setOsobe(res.data);
     });
   }, []);
 
   const obrisiOsobu = (id) => {
-    axios.delete(`http://localhost:8080/api/osobe/${id}`).then(() => {
+    axios.delete(`http://localhost:8081/api/osobe/${id}`).then(() => {
       setOsobe(osobe.filter((osoba) => osoba.id !== id));
     });
   };
@@ -34,7 +34,7 @@ function Lista() {
   };
 
   const sacuvajIzmene = (id) => {
-    axios.put(`http://localhost:8080/api/osobe/${id}`, editedOsoba).then((res) => {
+    axios.put(`http://localhost:8081/api/osobe/${id}`, editedOsoba).then((res) => {
       setOsobe(osobe.map((o) => (o.id === id ? res.data : o)));
       setEditId(null);
     });

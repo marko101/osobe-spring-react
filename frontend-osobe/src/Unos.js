@@ -10,7 +10,7 @@ function Unos() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/osobe", { ime, prezime, datumRodjenja, email }).then((res) => {
+    axios.post("http://localhost:8081/api/osobe", { ime, prezime, datumRodjenja, email }).then((res) => {
       setPoruka("Uspešno sačuvano!");
       setIme("");
       setPrezime("");
